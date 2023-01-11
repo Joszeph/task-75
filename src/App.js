@@ -1,16 +1,32 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [text, setText] = useState(localStorage.getItem('text') || "");
+
+const saveText = () =>{
+  localStorage.getItem('text', text)
+}
+
+const handleChange = (e) =>{
+  e.preventDefault()
+  setText(e.target.value)
+}
+
   return (
     <div className="App">
       <div className="box">
         <div className="field">
           <div className="control">
-            <textarea className="textarea is-large" placeholder="Notes..." />
+            <textarea 
+            onChange={handleChange}
+            value={text}
+            className="textarea is-large" 
+            placeholder="Notes..." />
           </div>
         </div>
-        <button className="button is-large is-primary is-active">Save</button>
-        <button className="button is-large">Clear</button>
+        <button className="button is-large is-primary is-active" type="submit" onClick={saveText}>Save</button>
+        <button className="button is-large" onClick={()=>setText("")}>Clear</button>
       </div>
     </div>
   );
