@@ -9,7 +9,7 @@ function App() {
   };
 
   const saveText = () => {
-    localStorage.setItem("Text node:", text);
+    localStorage.setItem("text", text);
   };
 
   return (
